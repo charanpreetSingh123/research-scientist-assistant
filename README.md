@@ -1,3 +1,94 @@
+# 🔬 AI Research Scientist Assistant
+
+> Automated Literature Analysis & ML Experimentation Platform
+
+An end-to-end AI-powered platform that automates research paper analysis, knowledge extraction, and machine learning experimentation. Built for researchers, data scientists, and ML engineers who want to move faster from raw literature to actionable insights.
+
+---
+
+## 📋 Features at a Glance
+
+| Module | What it does |
+|---|---|
+| 📄 Paper Ingestion | Upload research PDFs, auto-extract title, authors, algorithms, datasets, metrics |
+| 🔍 Semantic Search | Search across all papers using vector embeddings (ChromaDB) |
+| 🕸️ Knowledge Graph | Visual graph of relationships between papers, algorithms, datasets, authors |
+| 🔎 Gap Detection | Automatically identifies underexplored algorithms and missing research directions |
+| 🧪 ML Engine | Auto-profiles datasets, trains 6+ models, selects best automatically |
+| 🧠 Deep Learning | PyTorch feed-forward network for tabular data |
+| 💡 Explainability | SHAP-based feature importance and model interpretation |
+| 📝 Report Generator | Auto-generates structured PDF research reports |
+| 📊 Analytics Dashboard | Interactive Plotly charts for trends, model comparison, experiment history |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Tools |
+|---|---|
+| Frontend | Streamlit |
+| Backend | FastAPI, Python 3.13 |
+| ML | Scikit-learn, XGBoost, PyTorch |
+| NLP & Embeddings | Sentence-Transformers (all-MiniLM-L6-v2) |
+| Vector Database | ChromaDB |
+| Relational Database | PostgreSQL |
+| Explainability | SHAP |
+| Knowledge Graph | NetworkX, Plotly |
+| PDF Processing | PyMuPDF, pdfplumber, ReportLab |
+| Infra | Docker, Docker Compose |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.10+
+- Docker Desktop running
+- Git
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/charanpreetSingh123/research-scientist-assistant.git
+cd research-scientist-assistant
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Set up environment
+```bash
+cp .env.example .env
+```
+
+### 4. Start databases
+```bash
+docker-compose up -d
+```
+
+### 5. Initialize database tables
+```bash
+python3 scripts/init_db.py
+```
+
+### 6. Start the backend
+```bash
+uvicorn backend.main:app --reload --port 8000
+```
+
+### 7. Start the frontend (new terminal)
+```bash
+streamlit run frontend/app.py
+```
+
+Visit **http://localhost:8501**
+
+---
+
+## 📂 Project Structure
+
+```
 research-scientist-assistant/
 ├── backend/
 │   ├── api/
@@ -46,12 +137,13 @@ research-scientist-assistant/
 ├── scripts/
 │   └── init_db.py
 ├── data/
-│   ├── sample_datasets/           # put Titanic, House Prices CSVs here
-│   └── sample_papers/             # put arxiv PDFs here
+│   ├── sample_datasets/
+│   └── sample_papers/
 ├── docker-compose.yml
 ├── requirements.txt
 ├── .env.example
 └── README.md
+```
 
 ---
 
@@ -93,11 +185,11 @@ Once the backend is running, visit:
 
 | Version | Description |
 |---|---|
-| v1.0.0 | Initial release — all 12 modules complete |
+| v1.0.0 | Initial release  |
 
 ---
 
 ## 👤 Author
 
-**Charanpreet Singh**
+Charanpreet Singh
 B.Tech CSE — CGC University Mohali
