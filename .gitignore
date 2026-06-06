@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+env/
+.env
+*.env
+
+# Data and uploads (don't push user data)
+data/uploads/
+data/reports/
+data/chroma/
+
+# Keep folder structure
+!data/.gitkeep
+!data/uploads/.gitkeep
+!data/reports/.gitkeep
+!data/sample_datasets/.gitkeep
+!data/sample_papers/.gitkeep
+
+# Mac
+.DS_Store
+.AppleDouble
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+
+# Docker volumes
+postgres_data/
+chroma_data/
