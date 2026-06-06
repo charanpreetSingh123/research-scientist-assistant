@@ -1,0 +1,321 @@
+/* ── Base ───────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* { font-family: 'Inter', sans-serif; }
+
+/* hide streamlit default header/footer */
+#MainMenu, footer, header { visibility: hidden; }
+.stDeployButton { display: none; }
+
+/* main background */
+.stApp {
+    background: #0f1117;
+    color: #e2e8f0;
+}
+
+/* sidebar */
+[data-testid="stSidebar"] {
+    background: #1a1d2e !important;
+    border-right: 1px solid #2d3154;
+}
+
+[data-testid="stSidebar"] .stMarkdown p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+/* sidebar nav links */
+[data-testid="stSidebarNav"] a {
+    color: #94a3b8 !important;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    padding: 8px 12px !important;
+}
+
+[data-testid="stSidebarNav"] a:hover {
+    background: #2d3154 !important;
+    color: #4C9BE8 !important;
+    transform: translateX(4px);
+}
+
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background: linear-gradient(135deg, #1e3a5f, #1a1d2e) !important;
+    color: #4C9BE8 !important;
+    border-left: 3px solid #4C9BE8;
+}
+
+/* ── Metric cards ───────────────────────────────────────── */
+[data-testid="metric-container"] {
+    background: linear-gradient(135deg, #1a1d2e, #1e2235);
+    border: 1px solid #2d3154;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+[data-testid="metric-container"]:hover {
+    border-color: #4C9BE8;
+    box-shadow: 0 4px 20px rgba(76, 155, 232, 0.15);
+    transform: translateY(-2px);
+}
+
+[data-testid="metric-container"] [data-testid="stMetricLabel"] {
+    color: #94a3b8 !important;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    color: #e2e8f0 !important;
+    font-size: 2rem !important;
+    font-weight: 700;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.stButton > button {
+    background: linear-gradient(135deg, #4C9BE8, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 155, 232, 0.3);
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 6px 20px rgba(76, 155, 232, 0.4);
+    transform: translateY(-2px);
+}
+
+.stButton > button:active {
+    transform: translateY(0px);
+}
+
+/* primary button */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #00d4aa, #00b894);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.3);
+}
+
+.stButton > button[kind="primary"]:hover {
+    box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ── Input fields ───────────────────────────────────────── */
+.stTextInput > div > div > input,
+.stSelectbox > div > div,
+.stMultiSelect > div > div {
+    background: #1a1d2e !important;
+    border: 1px solid #2d3154 !important;
+    border-radius: 8px !important;
+    color: #e2e8f0 !important;
+    transition: border-color 0.2s ease;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #4C9BE8 !important;
+    box-shadow: 0 0 0 3px rgba(76, 155, 232, 0.1) !important;
+}
+
+/* ── File uploader ──────────────────────────────────────── */
+[data-testid="stFileUploader"] {
+    background: #1a1d2e;
+    border: 2px dashed #2d3154;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #4C9BE8;
+    background: #1e2235;
+}
+
+/* ── Dataframes ─────────────────────────────────────────── */
+[data-testid="stDataFrame"] {
+    border: 1px solid #2d3154;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* ── Expanders ──────────────────────────────────────────── */
+.streamlit-expanderHeader {
+    background: #1a1d2e !important;
+    border: 1px solid #2d3154 !important;
+    border-radius: 10px !important;
+    color: #e2e8f0 !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease;
+}
+
+.streamlit-expanderHeader:hover {
+    border-color: #4C9BE8 !important;
+    color: #4C9BE8 !important;
+}
+
+.streamlit-expanderContent {
+    background: #1a1d2e !important;
+    border: 1px solid #2d3154 !important;
+    border-top: none !important;
+    border-radius: 0 0 10px 10px !important;
+}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+.stTabs [data-baseweb="tab-list"] {
+    background: #1a1d2e;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+    border: 1px solid #2d3154;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: transparent;
+    border-radius: 8px;
+    color: #94a3b8;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: #e2e8f0;
+    background: #2d3154;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #1e3a5f, #1e2a4a) !important;
+    color: #4C9BE8 !important;
+    font-weight: 600 !important;
+}
+
+/* ── Alerts ─────────────────────────────────────────────── */
+.stAlert {
+    border-radius: 10px;
+    border: none;
+}
+
+[data-testid="stAlert"] {
+    background: #1a1d2e;
+    border-left: 4px solid #4C9BE8;
+    border-radius: 8px;
+    color: #e2e8f0;
+}
+
+/* success */
+.element-container .stAlert[data-baseweb="notification"] {
+    background: rgba(0, 212, 170, 0.1);
+    border-left: 4px solid #00d4aa;
+}
+
+/* ── Dividers ───────────────────────────────────────────── */
+hr {
+    border-color: #2d3154 !important;
+    margin: 1.5rem 0;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0f1117; }
+::-webkit-scrollbar-thumb {
+    background: #2d3154;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: #4C9BE8; }
+
+/* ── Spinner ────────────────────────────────────────────── */
+.stSpinner > div {
+    border-top-color: #4C9BE8 !important;
+}
+
+/* ── Progress bar ───────────────────────────────────────── */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, #4C9BE8, #00d4aa);
+    border-radius: 4px;
+}
+
+/* ── Custom card class (used in pages) ──────────────────── */
+.metric-card {
+    background: linear-gradient(135deg, #1a1d2e, #1e2235);
+    border: 1px solid #2d3154;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.metric-card:hover {
+    border-color: #4C9BE8;
+    box-shadow: 0 4px 20px rgba(76, 155, 232, 0.15);
+    transform: translateY(-2px);
+}
+
+.section-header {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+.tag {
+    display: inline-block;
+    background: rgba(76, 155, 232, 0.15);
+    color: #4C9BE8;
+    border: 1px solid rgba(76, 155, 232, 0.3);
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin: 2px;
+}
+
+.tag-green {
+    background: rgba(0, 212, 170, 0.15);
+    color: #00d4aa;
+    border-color: rgba(0, 212, 170, 0.3);
+}
+
+.tag-amber {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4C9BE8, #00d4aa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.badge-best {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f1117;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}

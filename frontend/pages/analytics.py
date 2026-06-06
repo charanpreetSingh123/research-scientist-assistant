@@ -3,82 +3,98 @@ import requests
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils.ui_helpers import load_css, page_header, section_header, divider, error_banner, plotly_dark_layout
 
+load_css()
 API_URL = "http://localhost:8000/api"
 
-st.title("📊 Analytics Dashboard")
-st.markdown("---")
+page_header("Analytics Dashboard", "Research trends, model performance, experiment insights", "📊")
 
-# ── Overview metrics ─────────────────────────────────────────
+# ── Overview metrics ──────────────────────────────────────
 try:
     response = requests.get(f"{API_URL}/analytics/overview")
     if response.status_code == 200:
-        overview = response.json()
-        col1, col2, col3, col4 = st.columns(4)
-        col1.metric("📄 Papers Uploaded", overview["total_papers"])
-        col2.metric("🧪 Experiments Run", overview["total_experiments"])
-        col3.metric("✅ Completed", overview["completed_experiments"])
-        col4.metric("❌ Failed", overview["failed_experiments"])
+        ov = response.json()
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("📄 Papers", ov["total_papers"])
+        c2.metric("🧪 Experiments", ov["total_experiments"])
+        c3.metric("✅ Completed", ov["completed_experiments"])
+        c4.metric("❌ Failed", ov["failed_experiments"])
 except Exception as e:
-    st.error(f"Cannot connect to API: {e}")
+    error_banner(f"Cannot connect to API: {e}")
 
-st.markdown("---")
+divider()
 
 col_left, col_right = st.columns(2)
 
-# ── Model performance chart ──────────────────────────────────
+# ── Model performance ─────────────────────────────────────
 with col_left:
-    st.subheader("🏆 Model Performance (Avg Score)")
+    section_header("Model Performance", "Average score across all experiments")
     try:
         response = requests.get(f"{API_URL}/analytics/model-performance")
         if response.status_code == 200:
             data = response.json()
             avg_scores = data.get("model_average_scores", {})
-
             if avg_scores:
-                df = pd.DataFrame(avg_scores.items(), columns=["Model", "Avg Score"])
-                df = df.sort_values("Avg Score", ascending=True)
-                fig = px.bar(
-                    df, x="Avg Score", y="Model",
+                df = pd.DataFrame(avg_scores.items(), columns=["Model", "Score"]).sort_values("Score")
+                fig = go.Figure(go.Bar(
+                    x=df["Score"], y=df["Model"],
                     orientation="h",
-                    color="Avg Score",
-                    color_continuous_scale="Blues",
-                    title="Average Score per Model"
-                )
-                fig.update_layout(height=350, showlegend=False)
+                    marker=dict(
+                        color=df["Score"],
+                        colorscale=[[0, "#1e3a5f"], [1, "#4C9BE8"]],
+                        line_width=0,
+                    )
+                ))
+                fig = plotly_dark_layout(fig, height=350)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("Run some experiments to see model performance here.")
+                st.markdown("<div style='text-align:center;padding:40px;color:#64748b;'>Run experiments to see model performance</div>", unsafe_allow_html=True)
     except Exception as e:
-        st.error(f"Error: {e}")
+        error_banner(f"Error: {e}")
 
-# ── Research trends ──────────────────────────────────────────
+# ── Research trends ───────────────────────────────────────
 with col_right:
-    st.subheader("📈 Research Trends")
+    section_header("Algorithm Usage in Papers", "From uploaded research literature")
     try:
         response = requests.get(f"{API_URL}/analytics/research-trends")
         if response.status_code == 200:
             trends = response.json()
             top_algos = trends.get("top_algorithms", {})
-
             if top_algos:
                 df = pd.DataFrame(top_algos.items(), columns=["Algorithm", "Count"])
-                fig = px.pie(
-                    df, names="Algorithm", values="Count",
-                    title="Algorithm Usage in Papers",
-                    color_discrete_sequence=px.colors.qualitative.Set3
+                fig = go.Figure(go.Pie(
+                    labels=df["Algorithm"],
+                    values=df["Count"],
+                    hole=0.55,
+                    marker=dict(
+                        colors=["#4C9BE8", "#00d4aa", "#f59e0b", "#a855f7",
+                                "#ef4444", "#06b6d4", "#84cc16", "#f97316"],
+                        line=dict(color="#0f1117", width=2)
+                    ),
+                    textfont=dict(color="#94a3b8"),
+                ))
+                fig = plotly_dark_layout(fig, height=350)
+                fig.update_layout(
+                    legend=dict(font=dict(color="#94a3b8")),
+                    annotations=[dict(
+                        text="Algos",
+                        x=0.5, y=0.5,
+                        font=dict(size=13, color="#64748b"),
+                        showarrow=False
+                    )]
                 )
-                fig.update_layout(height=350)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("Upload research papers to see trends here.")
+                st.markdown("<div style='text-align:center;padding:40px;color:#64748b;'>Upload papers to see trends</div>", unsafe_allow_html=True)
     except Exception as e:
-        st.error(f"Error: {e}")
+        error_banner(f"Error: {e}")
 
-st.markdown("---")
+divider()
 
-# ── Top metrics and datasets ─────────────────────────────────
-st.subheader("📋 Research Metrics & Datasets")
 col1, col2 = st.columns(2)
 
 try:
@@ -87,27 +103,33 @@ try:
         trends = response.json()
 
         with col1:
+            section_header("Top Evaluation Metrics")
             top_metrics = trends.get("top_metrics", {})
             if top_metrics:
-                df = pd.DataFrame(top_metrics.items(), columns=["Metric", "Count"])
-                fig = px.bar(df, x="Count", y="Metric", orientation="h",
-                             color="Count", color_continuous_scale="Greens",
-                             title="Most Used Evaluation Metrics")
-                fig.update_layout(height=300, showlegend=False)
+                df = pd.DataFrame(top_metrics.items(), columns=["Metric", "Count"]).sort_values("Count")
+                fig = go.Figure(go.Bar(
+                    x=df["Count"], y=df["Metric"],
+                    orientation="h",
+                    marker=dict(color="#00d4aa", line_width=0)
+                ))
+                fig = plotly_dark_layout(fig, height=300)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("No metric data yet.")
+                st.markdown("<div style='color:#64748b;font-size:0.85rem;'>No metric data yet</div>", unsafe_allow_html=True)
 
         with col2:
+            section_header("Referenced Datasets")
             top_datasets = trends.get("top_datasets", {})
             if top_datasets:
-                df = pd.DataFrame(top_datasets.items(), columns=["Dataset", "Count"])
-                fig = px.bar(df, x="Count", y="Dataset", orientation="h",
-                             color="Count", color_continuous_scale="Oranges",
-                             title="Most Referenced Datasets")
-                fig.update_layout(height=300, showlegend=False)
+                df = pd.DataFrame(top_datasets.items(), columns=["Dataset", "Count"]).sort_values("Count")
+                fig = go.Figure(go.Bar(
+                    x=df["Count"], y=df["Dataset"],
+                    orientation="h",
+                    marker=dict(color="#f59e0b", line_width=0)
+                ))
+                fig = plotly_dark_layout(fig, height=300)
                 st.plotly_chart(fig, use_container_width=True)
             else:
-                st.info("No dataset data yet.")
+                st.markdown("<div style='color:#64748b;font-size:0.85rem;'>No dataset data yet</div>", unsafe_allow_html=True)
 except Exception as e:
-    st.error(f"Error: {e}")
+    error_banner(f"Error: {e}")
