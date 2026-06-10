@@ -171,6 +171,26 @@ python3 tests/test_trainer.py
 All 4 test suites should pass with no errors.
 
 ---
+## 📸 Screenshots
+
+### Home Page
+![Home](assets/Main_dashboard.png)
+
+### Upload Papers
+![Upload Papers](assets/Upload_papers.png)
+
+### ML Experiment Results
+![ML Experiment](assets/experiment_result.png)
+
+### Experiment History
+![Experiment History](assets/ML_experiment_history.png)
+
+### Analytics Dashboard
+![Analytics](assets/Analytics_dashboard.png)
+
+### Reports
+![Reports](assets/Reports.png)
+
 
 ## 📌 API Documentation
 
