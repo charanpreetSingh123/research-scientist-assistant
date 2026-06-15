@@ -52,13 +52,13 @@ Built for researchers, data scientists, and ML engineers who want to move faster
 ├──────────────────┼───────────────────────────────────────────────────────────┤
 │  Frontend        │  Streamlit                                                │
 │  Backend         │  FastAPI · Python 3.13                                    │
-│  Machine Learning│  Scikit-learn · XGBoost · PyTorch                        │
-│  NLP / Embeddings│  Sentence Transformers (all-MiniLM-L6-v2)                │
+│  Machine Learning│  Scikit-learn · XGBoost · PyTorch                         │
+│  NLP / Embeddings│  Sentence Transformers (all-MiniLM-L6-v2)                 │
 │  Vector Database │  ChromaDB                                                 │
 │  Relational DB   │  PostgreSQL                                               │
 │  Explainability  │  SHAP                                                     │
 │  Knowledge Graph │  NetworkX · Plotly                                        │
-│  PDF Processing  │  PyMuPDF · pdfplumber · ReportLab                        │
+│  PDF Processing  │  PyMuPDF · pdfplumber · ReportLab                         │
 │  Infrastructure  │  Docker · Docker Compose                                  │
 └──────────────────┴───────────────────────────────────────────────────────────┘
 ```
