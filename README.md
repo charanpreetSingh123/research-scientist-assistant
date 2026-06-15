@@ -67,23 +67,52 @@ Built for researchers, data scientists, and ML engineers who want to move faster
 
 ## 📸 Screenshots
 
+<table>
+<tr>
+<td align="center" width="50%">
+
 ### 🏠 Home Dashboard
-![Home](assets/Main_dashboard.png)
+<img src="assets/Main_dashboard.png" width="100%">
+
+</td>
+<td align="center" width="50%">
 
 ### 📄 Upload Papers
-![Upload Papers](assets/Upload_papers.png)
+<img src="assets/Upload_papers.png" width="100%">
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
 
 ### 🧪 ML Experiment Results
-![ML Experiment](assets/experiment_result.png)
+<img src="assets/experiment_result.png" width="100%">
+
+</td>
+<td align="center">
 
 ### 📈 Experiment History
-![Experiment History](assets/ML_experiment_history.png)
+<img src="assets/ML_experiment_history.png" width="100%">
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
 
 ### 📊 Analytics Dashboard
-![Analytics](assets/Analytics_dashboard.png)
+<img src="assets/Analytics_dashboard.png" width="100%">
+
+</td>
+<td align="center">
 
 ### 📝 Reports
-![Reports](assets/Reports.png)
+<img src="assets/Reports.png" width="100%">
+
+</td>
+</tr>
+</table>
 
 ---
 
